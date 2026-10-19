@@ -8,15 +8,15 @@ def clear_keyboard_buffer():
 msvcrt.kbhit()# checks for waiting keystrokes; msvcrt.getwch() removes one. Call the function after clearing the screen and immediately before accepting the player’s guess: 
 
 def getvalidint(prompt, min, max): #works most likely
-    '''Gets valid input between a min and max (prompt, min, max)'''
+    ''' (prompt, min, max) Gets valid input between a min and max'''
     answer = input(prompt)
     while answer.isdigit() == False or int(answer) > max or int(answer) < min:
         print("Error")
         answer = input(prompt)
     return int(answer)
 
-def getnonemptyinput(prompt): #works
-    '''Reject empty or whitespace only input(prompt)'''
+def getnonemptyinput(prompt):
+    '''(prompt) Reject empty or whitespace only input'''
     while True:
         resp = input(prompt).strip()
         if (resp == ""):
@@ -25,18 +25,18 @@ def getnonemptyinput(prompt): #works
             return resp
 
 def pause(message = "Press Anything to continue:"): 
-    '''Waits for user input (message)'''
+    '''(message) Waits for user input '''
     answer = input(message)
 
-def printnumberedlist(list):              #ju #NOTE idk if this is a function in the treasure hunt program
-    '''prints a list character by character or by each list if the input list is 2d (list)'''
+def printnumberedlist(list):   
+    '''(list) Prints a list character by character or by each list if the input list is 2d '''
     for i in list:
         print (i)
     if list == []:
         print("No items to display")
 
-def getvalidresponse(prompt, valid_response): #valid response will be exact string and lower case 
-    '''Repeat until an accepted response is entered use a list comprehension to lowercase valid responses. Return lowercase input. (prompt, valid response) valid response cant be a number, strings work for example'''
+def getvalidresponse(prompt, valid_response): #valid response will be exact string 
+    '''(prompt, valid response) Repeat until an accepted response is entered use a list comprehension to lowercase valid responses. Return lowercase input. valid response cant be a number, strings work for example'''
     attempts = []
     reponse = input(prompt)
     attempts.append(reponse)
@@ -46,8 +46,8 @@ def getvalidresponse(prompt, valid_response): #valid response will be exact stri
     print(attempts)
 
 
-def analyze_numbers(numbers_list): #works for most part
-    '''Use a list comprehension to collect positive numbers. Return four values: positive-number list, positive count, negative count, zero count. '''
+def analyze_numbers(numbers_list): 
+    '''(numbers_list) Use a list comprehension to collect positive numbers. Return four values: positive-number list, positive count, negative count, zero count. '''
     total = 0
     pos_nums = [num for num in numbers_list if num > 0]
     zeros = [num for num in numbers_list if num == 0] 
@@ -58,22 +58,5 @@ def analyze_numbers(numbers_list): #works for most part
             pos_total += num
     return pos_nums, pos_total, zeros ,neg_nums
 
-def filter_by_length(items, min, max): #extrenely annnoying to code, 
-    """Return strings whose length is between min_len and max_len of a list, preserving order.""" 
-    sum_list = []
-    place_inrange = -1
-    for item in items:
-        place_inrange += 1
-        if place_inrange >= min and place_inrange <= max:
-            sum_list.append(item)
-        elif place_inrange > max:
-            result_str = ", ".join(sum_list)
-            return result_str 
-
-
-if __name__ == "__main__":
+if __name__ == "__main__": #tests start inside if statement
     print("Hello")
-
-    num = [1,2,3,4,5,6,7,8,9,-1,0,-5]
-    words = ["hi", "hello", "hey", "greetings", "yo"]
-    no = []

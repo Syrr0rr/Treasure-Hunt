@@ -10,10 +10,7 @@ def clear_screen():
 def generate():
     '''generates where the trap,treasure, and nothing spawn'''
     global v_trea, v_trap
-    treasure, trap, empty = random.sample(locations, 3)
-    v_trea = treasure
-    v_trap = trap
-    return treasure, trap, empty
+    v_trea, v_trap, empty = random.sample(locations, 3)   
     
 def set_dif(): #uses global variable, need to fix 
     '''sets the difficulty of the game'''
@@ -61,16 +58,16 @@ def score(val):
         print("Treasure Hunter")
     elif val > 50:
         print("Master Treasure Hunter")
+    print(f"End Total: {val}")
 
 def main(): #mainloop
-
     while True:
         attemps = []
         total = 0  
-        set_dif() #gv
-        for i in range(5): #has the main components, is not done 
-            treasure, trap, empty = generate() 
-            clear_screen()
+        set_dif() #get rid of global v
+        for i in range(5): 
+            generate() 
+            clear_screen() # get rid of global v
             print(f"Round {i+1} of 5")
             print("")
             u.printnumberedlist(locations)
@@ -84,13 +81,13 @@ def main(): #mainloop
         treasure_rounds = len(nums)
         amt_zeros = len(zeros)
         trap_rounds = len(neg_num)
-        print(f"Treasure found: {treasure_rounds} | Nothing found {amt_zeros} | Trap found {trap_rounds}")
+        print(f"Treasure found: {treasure_rounds} | Nothing found: {amt_zeros} | Trap found: {trap_rounds}")
         score(total)
+        
         restart = input("Q to quit  |  Other to Restart: ").lower().strip()
         if restart == "q":
             break
-
-#Maybe print the attempts
+#not an error with my code but I think the assinment formatting makes the easy difficulty hard and the hard difficulty easy
 
 if __name__ == "__main__":
     main()
